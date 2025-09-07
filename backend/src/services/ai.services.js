@@ -3,7 +3,7 @@ const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 
 async function getResponse(prompt) {
   const chatCompletion = await groq.chat.completions.create({
-    model: "deepseek-r1-distill-qwen-32b",
+    model: "deepseek-r1-distill-llama-70b",
     messages: [
       {
         role: "user",

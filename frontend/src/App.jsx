@@ -15,9 +15,27 @@ function App() {
     prism.highlightAll();
   }, []);
 
-  async function reviewCode(){
-      const response = await axios.post("http://localhost:3000/ai/get-review/", {code});
+  async function reviewCode() {
+    try {
+      const response = await axios.post("http://localhost:3000/ai/get-review/", { code });
       setReview(response.data);
+
+      // Log the user activity
+      await logUserActivity("Review Code", "User clicked on Review Code button");
+    } catch (err) {
+      console.error("Review or activity logging failed:", err);
+    }
+  }
+
+  async function logUserActivity(activityType, details) {
+    try {
+      await axios.post("http://localhost:3000/api/activity", {
+        activityType,
+        details,
+      });
+    } catch (error) {
+      console.error("Activity log failed:", error);
+    }
   }
 
   function handleFileUpload(event) {
@@ -37,31 +55,40 @@ function App() {
       <header className="w-full text-center py-4 text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 shadow-lg rounded-lg">
         AI Code Reviewer 🤖
       </header>
+
       <div className="flex flex-row gap-6 w-full max-w-6xl">
+        {/* Code Editor */}
         <div className="w-1/2 h-full bg-gray-800 p-6 rounded-lg shadow-lg border border-gray-700 overflow-auto">
-          {/*File Upload Button*/}
           <input
             type="file"
             accept=".js, .py, .css, .cpp, .cs, .ts, .html, .json, .java"
             onChange={handleFileUpload}
             className="mb-4 text-sm text-gray-400 cursor-pointer bg-gray-700 p-2 rounded-lg"
           />
-          {/*Code Editor*/}
 
           <div className="border border-gray-600 rounded-lg p-4 bg-gray-900">
-            <Editor value={code} onValueChange={(code) => setCode(code)}
-              highlight={(code)=>prism.highlight(code, prism.languages.javascript, "javascript")}
+            <Editor
+              value={code}
+              onValueChange={(code) => setCode(code)}
+              highlight={(code) => prism.highlight(code, prism.languages.javascript, "javascript")}
               padding={10}
-              style={{fontFamily: "Fire Code, monospace", fontsize: 16}}></Editor>
+              style={{ fontFamily: "Fira Code, monospace", fontSize: 16 }}
+            />
           </div>
 
-          <button onClick={reviewCode} className="w-full mt-4 py-3 text-lg font-semibold text-white bg-gradient-to-r from-blue-500 to-purple-600 hover:from-purple-500 hover:to-blue-600  rounded-lg shadow-lg transform transition duration-300 hover:scale-105 hover:shadow-xl">
+          <button
+            onClick={reviewCode}
+            className="w-full mt-4 py-3 text-lg font-semibold text-white bg-gradient-to-r from-blue-500 to-purple-600 hover:from-purple-500 hover:to-blue-600  rounded-lg shadow-lg transform transition duration-300 hover:scale-105 hover:shadow-xl"
+          >
             Review Code 🤖
           </button>
         </div>
+
+        {/* Review Section */}
         <div className="w-1/2 h-full bg-gray-800 p-6 rounded-lg shadow-lg border border-gray-700 overflow-auto">
-          <Markdown rehypePlugins={[rehypeHighlight]} className="text-gray-300">{review}</Markdown>
-          
+          <Markdown rehypePlugins={[rehypeHighlight]} className="text-gray-300">
+            {review}
+          </Markdown>
         </div>
       </div>
     </div>
