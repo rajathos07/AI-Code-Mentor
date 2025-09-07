@@ -24,6 +24,7 @@ This project demonstrates how to build a powerful AI-powered web application usi
 - [MongoDB](https://www.mongodb.com/) (Local or Cloud instance)
 - [Groq API Key](https://groq.com/docs)
 - [Tailwind CSS](https://v3.tailwindcss.com/docs/guides/vite)
+- [Framer-motion](npm install framer-motion)
 
 ### Installation:
 
@@ -72,16 +73,10 @@ This project demonstrates how to build a powerful AI-powered web application usi
 - Node.js Docs: [Node.js Docs](https://nodejs.org/en)
 - Tailwind CSS Docs: [Tailwind CSS Docs](https://v3.tailwindcss.com/docs/guides/vite)
 
-## Video Tutorials:
-- [Prompt Engineering Crash Course](https://youtu.be/LVtg2u83-0o?si=YMQ8yJaS9uk_xeK6)
-- [100+ Data Science Projects Series](https://youtube.com/playlist?list=PLWyN7K28ZraQi1_7ILgiKAiY_FmGeQWbI&si=S0CDroe5uCXecn_M)
-- [Machine Learning Algorithm From Scratch](https://youtube.com/playlist?list=PLWyN7K28ZraQt7nexRNV6DIkJQLyIG1Rm&si=Piw0HtGMw7-2PGrF)
+
 
 ## Join the Community:
-- [Facebook](https://www.facebook.com/Knowledge-Doctor-Programming-114082097010409/-)
-- [Discord](https://discord.gg/m9FJUQgXHX)
-- [Instagram](https://www.instagram.com/knowledge_doctor/)
-- [LinkedIn](https://www.linkedin.com/in/mishu-dhar-chando-8878a617b)
+- [LinkedIn](https://www.linkedin.com/in/rajath-os-769570260/)
 
 ## License:
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
