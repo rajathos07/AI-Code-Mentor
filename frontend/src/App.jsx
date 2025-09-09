@@ -67,17 +67,18 @@ function MainEditor() {
     }
   }
 
-  async function logUserActivity(activityType, details) {
-    try {
-      await axios.post("http://localhost:3000/api/activity", {
-        activityType,
-        details,
-        timestamp: new Date().toISOString(),
-      });
-    } catch (error) {
-      console.error("Activity log failed:", error);
-    }
+ async function logUserActivity(activityType, details) {
+  try {
+    await axios.post("http://localhost:3000/api/activity/log", {  // ✅ Added /log
+      userId: "default-user", // ✅ Added required userId
+      action: activityType,   // ✅ Changed to 'action' to match backend
+      details,
+      timestamp: new Date().toISOString(),
+    });
+  } catch (error) {
+    console.error("Activity log failed:", error);
   }
+}
 
   function handleFileUpload(event) {
     const file = event.target.files[0];
